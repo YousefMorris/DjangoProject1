@@ -1,0 +1,66 @@
+{%load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>category page</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}" />
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/products">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/products">Product<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/category">Category</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/aboutus">About Us</a>
+                </li>
+
+
+            </ul>
+
+        </div>
+    </nav>
+    <div class="contents">
+        <h1><span>Category List</span></h1>
+        <div class="container" style=" margin-right: 340px; margin-top: 25px;">
+
+            <table width="100%" border="1" class="table table-striped" style="border-collapse: collapse;">
+                <tr>
+                    <td>id</td>
+                    <td>name</td>
+                    <td>Product Image</td>
+                    <td>Category Image</td>
+                </tr>
+                {%for product in products%}
+                <tr>
+                    <td>{{product.id}}</td>
+                    <td>{{product.name}}</td>
+                    <td><img src="{% static 'images/'|add:product.path %}" style="width: 100px; height: 100px;"></td>
+                    <td><img src="{% static 'images/'|add:product.categoryimagepath %}"
+                            style="width: 100px; height: 100px;"></td>
+                </tr>
+                {%endfor%}
+            </table>
+        </div>
+    </div>
+    <script src="{%static 'bootstrap/js/bootstrap.js'%}" />
+
+</body>
+
+</html>
