@@ -1,0 +1,23 @@
+{%extends 'ecommerceapp/templates/index.html'%}
+{%load static%}
+{%block mycontent%}
+    <div class="contents">
+        <h1><span>Product List</span></h1>
+        <div class="container" style=" margin-right: 340px; margin-top: 25px;">
+            <table width="100%" border="1" class="table table-striped" style="border-collapse: collapse;">
+                <!-- second way with the DB -->
+                <tr>
+                    <td>ID</td>
+                    <td>Name</td>
+                    <td>Actions</td>
+                    <td>Image</td>
+                </tr>
+                <tr>
+                    <td>{{productdetails.id}}</td>
+                    <td>{{productdetails.name}}</td>
+                    <td><img src="{% static 'images/electronics.jpeg' %}" style="width: 100px; height: 100px;"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+{%endblock%}

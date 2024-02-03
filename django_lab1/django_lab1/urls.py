@@ -21,10 +21,11 @@ from django.contrib import admin
 from django.urls import path,include
 from ecommerceapp import views
 urlpatterns = [
-    path("productdetails/", include('ecommerceapp.urls')),
-    path("products", views.product),
-    path("category", views.category),
-    path("aboutus", views.aboutus),
+    # path("", views.product),  # to open directly on the products view without any url path
+    # path("category", views.category),
+    # path("aboutus", views.aboutus),
+    path("", include('ecommerceapp.urls')),
+    path('admin/', admin.site.urls),
 ]
 
 

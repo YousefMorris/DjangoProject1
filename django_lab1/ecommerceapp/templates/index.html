@@ -21,7 +21,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/products">Product<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/">Product<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/category">Category</a>
@@ -29,39 +29,47 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/aboutus">About Us</a>
                 </li>
-
-                </li>
-
             </ul>
-
         </div>
     </nav>
+    
+    {% block mycontent %}
     <div class="contents">
-
         <h1><span>Product List</span></h1>
+        <a href="/add" type="button" class="btn btn-dark" style="margin-left: 70px;">Add Product</a>
         <div class="container" style=" margin-right: 340px; margin-top: 25px;">
             <table width="100%" border="1" class="table table-striped" style="border-collapse: collapse;">
+                
                 <tr>
                     <td>ID</td>
                     <td>Name</td>
+                    <td>Price</td>
                     <td>Actions</td>
                     <td>Image</td>
                 </tr>
-                {%for product in products%}
+                {% for product in products %}
                 <tr>
                     <td>{{product.id}}</td>
                     <td>{{product.name}}</td>
-                    <td><a href="/productdetails/{{product.id}}">Show Details</a></td>
-
+                    <td>{{product.price}}</td>
+                    <td>
+                        <a href="/productdetails/{{product.id}}">Show Details</a>
+                        <br>
+                        <a href="/productupdate/{{product.id}}">Update Product</a>
+                        <br>
+                        <a href="/productdelete/{{product.id}}">Delete Product</a>
+                    </td>
+                    <td><img src="{% static 'images/electronics.jpeg' %}" style="width: 100px; height: 100px;"></td>
+                    {% comment %} 
                     <td><img src="{% static 'images/'|add:product.path %}" style="width: 100px; height: 100px;"></td>
-
+                    {% endcomment %}
                 </tr>
 
-                {%endfor%}
+                {% endfor %}
             </table>
         </div>
-
     </div>
+    {% endblock %}
     <script src="{%static 'bootstrap/js/bootstrap.js'%}" />
 
 </body>
