@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect
 from .models import Product
+from .forms import *
 # Creating a list of products
 products = [
     {'id':1,'name':'Television','path':'television.jpg','categoryimagepath':'electronics.jpeg'},
@@ -34,29 +35,77 @@ def product(request):
     #second way from the DB select statement
     context={'products':Product.objects.all()}
     return render(request,'index.html',context)
+
 def category(request):
     context={}
-    context['products']=products
+    context={'products':Product.objects.all()}
     return render(request,'category.html',context)
 
 def aboutus(request):
     return render(request,'aboutus.html')
 
 def productadd(request):
-    if(request.method=='POST'):
+    form = productForm()
+    context={ 'form' : form}
+    if(request.method == 'POST'):
         #data recieved from the client side
         #create object product
-        Product.objects.create(name=request.POST["tname"],price=int(request.POST["tprice"]))
-        return HttpResponseRedirect("/")
-    return render(request,'add.html')
+        form=productForm(request,request.POST,request.FILES)
+        if form.is_valid:
+            Product.objects.create(
+                name=request.POST["name"],
+                price=int(request.POST["price"]),
+                image=request.FILES["image"],
+                category=Category.objects.get(id=request.POST["category"]))
+            return HttpResponseRedirect("/")
+        else:
+            context['message'] = "Your Data is not completed"
+
+    return render(request,'add.html',context)
+
+def categoryadd(request):
+    form = categoryForm()
+    context={ 'form' : form}
+    if(request.method == 'POST'):
+        #data recieved from the client side
+        #create object product
+        form=categoryForm(request,request.POST,request.FILES)
+        if form.is_valid:
+            Category.objects.create(
+                name=request.POST["name"],
+                categoryimage=request.FILES["categoryimage"])
+            return HttpResponseRedirect("/")
+        else:
+            context['message'] = "Your Data is not completed"
+
+    return render(request,'add.html',context)
+
+
+
+    # if(request.method=='POST'):
+    #     #data recieved from the client side
+    #     #create object product
+    #     Product.objects.create(name=request.POST["tname"],price=int(request.POST["tprice"]),image=request.FILES["timage"])
+    #     return HttpResponseRedirect("/")
+    # return render(request,'add.html')
 def productdelete(request,pID):
     Product.objects.filter(id=pID).delete()
     return HttpResponseRedirect("/")
 def productupdate(request,pID):
-    if(request.method=='POST'):
+    context={}
+    if request.method=='POST':
         #data recieved from the client side
         #create object product
-        Product.objects.filter(id=pID).update(name=request.POST["tname"],price=int(request.POST["tprice"]))
-        return HttpResponseRedirect("/")
-    context ={'oldData':Product.objects.get(id=pID)}
+        #price is casting integer raise an error do not miss it
+        if request.POST['tname']!="" or request.POST['tprice']!="": 
+            Product.objects.filter(id=pID).update(name=request.POST["tname"],price=int(request.POST["tprice"]))
+            return HttpResponseRedirect("/")
+        else:
+            
+            context['message'] = 'kindly fill all the fields'
+    context['oldData'] = Product.objects.get(id=pID)
     return render(request,'update.html',context)
+           
+
+
+ 

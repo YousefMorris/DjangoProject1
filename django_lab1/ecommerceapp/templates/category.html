@@ -1,7 +1,5 @@
 {%extends 'ecommerceapp/templates/index.html'%}
 {%load static %}
-
-
 {%block mycontent%}
 
 <div class="contents">
@@ -19,8 +17,8 @@
             <tr>
                 <td>{{product.id}}</td>
                 <td>{{product.name}}</td>
-                <td><img src="{% static 'images/'|add:product.path %}" style="width: 100px; height: 100px;"></td>
-                <td><img src="{% static 'images/'|add:product.categoryimagepath %}"
+                <td><img src="{{product.getimageurl}}" style="width: 100px; height: 100px;"></td>
+                <td><img src="{{product.category.getimageurl}}"
                         style="width: 100px; height: 100px;"></td>
             </tr>
             {%endfor%}

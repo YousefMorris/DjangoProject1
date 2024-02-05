@@ -6,16 +6,15 @@
     <div class="container" style=" margin-right: 340px; margin-top: 25px;">
 
 
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             {%csrf_token%}
-            <label>Name:</label>
-            <input type="text" name="tname">
-            <label>Price:</label>
-            <input type="text" name="tprice">
-            <!-- <label>image:</label>
-                        <input type="text" name="timage"> -->
+            {{form}}
             <input type="submit" value="add">
+            
         </form>
+        <div style="color: red;">
+            {{message}}
+        </div>
 
     </div>
 </div>

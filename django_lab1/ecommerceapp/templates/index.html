@@ -13,7 +13,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/products">Navbar</a>
+        <a class="navbar-brand" href="/">Navbar</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -37,6 +37,7 @@
     <div class="contents">
         <h1><span>Product List</span></h1>
         <a href="/add" type="button" class="btn btn-dark" style="margin-left: 70px;">Add Product</a>
+        <a href="/addcategory" type="button" class="btn btn-dark" style="margin-left: 70px;">Add Category</a>
         <div class="container" style=" margin-right: 340px; margin-top: 25px;">
             <table width="100%" border="1" class="table table-striped" style="border-collapse: collapse;">
                 
@@ -59,9 +60,10 @@
                         <br>
                         <a href="/productdelete/{{product.id}}">Delete Product</a>
                     </td>
-                    <td><img src="{% static 'images/electronics.jpeg' %}" style="width: 100px; height: 100px;"></td>
+                    <td><img src="{{product.getimageurl}}" style="width: 100px; height: 100px;"></td>                    
                     {% comment %} 
-                    <td><img src="{% static 'images/'|add:product.path %}" style="width: 100px; height: 100px;"></td>
+                        <td><img src="{% static 'images/electronics.jpeg' %}" style="width: 100px; height: 100px;"></td>
+                        <td><img src="{% static 'images/'|add:product.path %}" style="width: 100px; height: 100px;"></td>
                     {% endcomment %}
                 </tr>
 

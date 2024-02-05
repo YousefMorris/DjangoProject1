@@ -2,22 +2,20 @@
 {%load static%}
 {%block mycontent%}
 <div class="contents">
-    <h1><span>Product List</span></h1>
+    <h1><span>Category List</span></h1>
     <div class="container" style=" margin-right: 340px; margin-top: 25px;">
 
 
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             {%csrf_token%}
-            <label>Name:</label>
-            <input type="text" name="tname" value="{{oldData.name}}">
-            <label>Price:</label>
-            <input type="text" name="tprice" value="{{oldData.price}}">
+            {{form}}
+            <input type="submit" value="add">
             
-            <input type="submit" value="update">
         </form>
         <div style="color: red;">
             {{message}}
         </div>
+
     </div>
 </div>
 {%endblock%}
