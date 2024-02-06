@@ -1,0 +1,22 @@
+{%extends 'ecommerceapp/index.html'%}
+{%load static%}
+{%block mycontent%}
+<div class="contents">
+    <h1><span>Product List</span></h1>
+    <div class="container" style=" margin-right: 340px; margin-top: 25px;">
+
+
+        <form method="post" >
+            {%csrf_token%}
+            <input type="submit" value="Are You Sure,You want to delete?">
+            <br>
+            <a href="/">Cancel</a>
+            
+        </form>
+        <div style="color: red;">
+            {{message}}
+        </div>
+
+    </div>
+</div>
+{%endblock%}

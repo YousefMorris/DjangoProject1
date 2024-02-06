@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "ecommerceapp.apps.EcommerceappConfig", #for rendering the html page (index.html) with fullpath
+    "accounts.apps.AccountsConfig",
 ]
 
 MIDDLEWARE = [
@@ -56,7 +57,7 @@ ROOT_URLCONF = "django_lab1.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR,'templates'],
+        "DIRS": [BASE_DIR/'templates/'],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [

@@ -21,10 +21,12 @@ from django.contrib import admin
 from django.urls import path,include
 from ecommerceapp import views
 from .settings import *
-from django.conf.urls.static import static
+from django.conf.urls.static import static 
+
 urlpatterns = [
     path("", include('ecommerceapp.urls')),
     path('admin/', admin.site.urls),
+    path("accounts/",include('accounts.urls'))
 ] + static(MEDIA_URL,document_root=MEDIA_ROOT)
 
 
