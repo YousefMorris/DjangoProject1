@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "ecommerceapp.apps.EcommerceappConfig", #for rendering the html page (index.html) with fullpath
     "accounts.apps.AccountsConfig",
+    "rest_framework",
+    
 ]
 
 MIDDLEWARE = [
